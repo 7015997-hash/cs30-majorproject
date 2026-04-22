@@ -12,4 +12,5 @@
  - One Animation game
  - Preview of the games in the front page
  - Making the preview so it works like a button.
+ - Have an simple animation in the front page.
  --> 
