@@ -16,11 +16,19 @@ function preload(){
 }
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  letter = random(alphabets);
-  print(letter);
+  letter = random(alpahbets);
+  angleMode(DEGREES);
+
 }
 
 function draw() {
   background(220);
+  let angle = map(mouseX, 0, width, 0,360);
+  translate(width/2,height/2);
+  rotate(angle);
+  textFont(font);
+  textSize(50);
+  text(letter,0,0);
+
   // square(mouseX,mouseY,50);
 }
