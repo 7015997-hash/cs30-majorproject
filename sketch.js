@@ -9,6 +9,7 @@ class Letter{
   constructor(x,y){
     this.alphabets = ["A","B","C","D","E","F","G","H","I","J","K","L","M",
       "N","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    this.letter = random(this.alphabets);
 
     this.x = x;
     this.y = y;
@@ -16,33 +17,38 @@ class Letter{
     this.angle = random(360);
   }
   dispaly(){
-    translate(width/2,height/2);
-    rotate(angle);
+    translate(this.x,this.y);
+    rotate(this.angle);
     textFont(font);
     textSize(50);
-    text(letter,0,0);
+    text(this.letter,0,0);
     
   }
 }
 
 
-let letter;
+
 let font;
+let l;
 function preload(){
   font = loadFont("Borscha-Italic.ttf");
 }
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  letter = random(this.alpahbets);
+
   angleMode(DEGREES);
+  l = new Letter(width/2, height/2);
 
 }
 
 function draw() {
   background(220);
+  l.display();
 
 
-  
+  function mouseDragged(){
+
+  }
 
   // square(mouseX,mouseY,50);
 }
