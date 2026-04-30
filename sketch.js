@@ -15,13 +15,17 @@ class Letter{
     this.y = y;
     this.letter = random(this.alphabets);
     this.angle = random(360);
+    this.theColor = random(200,25);
   }
-  dispaly(){
+  display(){
+    
     translate(this.x,this.y);
     rotate(this.angle);
+    fill(this.theColor);
     textFont(font);
     textSize(50);
     text(this.letter,0,0);
+  
     
   }
 }
@@ -29,7 +33,7 @@ class Letter{
 
 
 let font;
-let l;
+let L;
 function preload(){
   font = loadFont("Borscha-Italic.ttf");
 }
@@ -37,18 +41,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   angleMode(DEGREES);
-  l = new Letter(width/2, height/2);
+  L = new Letter(width/2, height/2);
 
 }
 
 function draw() {
   background(220);
-  l.display();
-
-
-  function mouseDragged(){
-
-  }
-
-  // square(mouseX,mouseY,50);
+  L.display();
 }
+function mouseDragged(){
+
+}
+
