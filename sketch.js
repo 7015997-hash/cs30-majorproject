@@ -49,7 +49,8 @@ function draw() {
   background(220);
   L.display();
 }
-function mouseDragged(){
+function mousePressed(){
+  
 
 }
 
