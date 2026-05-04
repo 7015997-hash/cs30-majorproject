@@ -13,43 +13,69 @@ class Letter{
 
     this.x = x;
     this.y = y;
+    this.dx = random(-5,5);
+    this.dy = random(-5,5);
     this.letter = random(this.alphabets);
     this.angle = random(360);
-    this.theColor = random(200,25);
+    this.r = random(255);
+    this.g = random(150);
+    this.b = random(200);
+  }
+  update(){
+    this.x += this.dx;
+    this.y+= this.dy;
   }
   display(){
-    
+    push();
     translate(this.x,this.y);
     rotate(this.angle);
-    fill(this.theColor);
+    fill(this.r, this.g, this.b);
     textFont(font);
     textSize(50);
     text(this.letter,0,0);
+    pop();
   
     
+  }
+  offScreen(){
+    if(this.x > width || this.x <0 || this.y> height || this.y< 0){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
 
 
 
 let font;
-let L;
+let letters = [];
 function preload(){
-  font = loadFont("Borscha-Italic.ttf");
+  font = loadFont("Borscha-italic.ttf");
 }
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
   angleMode(DEGREES);
-  L = new Letter(width/2, height/2);
 
 }
 
 function draw() {
   background(220);
-  L.display();
+  for(let i= 0; i < letters.length;i++){
+    letters[i].update();
+    letters[i].display();
+    if (letters[i].offScreen() === true){
+      letters.splice(i,1);
+    }
+  }
+  print(letters.length);
+
+
 }
-function mousePressed(){
+function mouseDragged(){
+  letters.push(new Letter(mouseX,mouseY));
   
 
 }
