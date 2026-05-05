@@ -38,6 +38,7 @@ class Letter{
     
   }
   offScreen(){
+    let margin = 23;
     if(this.x > width || this.x <0 || this.y> height || this.y< 0){
       return true;
     }
@@ -63,7 +64,7 @@ function setup() {
 
 function draw() {
   background(220);
-  for(let i= 0; i < letters.length;i++){
+  for(let i= letters.length-1; i >= 0;i--){
     letters[i].update();
     letters[i].display();
     if (letters[i].offScreen() === true){
