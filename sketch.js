@@ -20,10 +20,15 @@ class Letter{
     this.r = random(255);
     this.g = random(150);
     this.b = random(200);
+    this.size = 30;
+    this.angleW = random(1,5);
   }
   update(){
     this.x += this.dx;
     this.y+= this.dy;
+    // This angles th letters as it proceeds to go out of the screen.
+    this.angle += this.angleW;
+    
   }
   display(){
     push();
@@ -31,15 +36,15 @@ class Letter{
     rotate(this.angle);
     fill(this.r, this.g, this.b);
     textFont(font);
-    textSize(50);
+    textSize(this.size);
     text(this.letter,0,0);
     pop();
   
     
   }
   offScreen(){
-    let margin = 23;
-    if(this.x > width || this.x <0 || this.y> height || this.y< 0){
+    let margin = this.size*2;
+    if(this.x > width* margin || this.x <0 - margin || this.y> height + margin || this.y< 0 - margin){
       return true;
     }
     else{
@@ -52,6 +57,7 @@ class Letter{
 
 let font;
 let letters = [];
+//  font uploaded
 function preload(){
   font = loadFont("Borscha-italic.ttf");
 }
@@ -73,7 +79,7 @@ function draw() {
   }
   print(letters.length);
 
-
+// extracts the letters as the mouse is dragged
 }
 function mouseDragged(){
   letters.push(new Letter(mouseX,mouseY));
