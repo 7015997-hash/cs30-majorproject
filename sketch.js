@@ -53,8 +53,8 @@ class Letter{
   }
 }
 
-
-
+let state = 'front';
+let imgBtn;
 let font;
 let letters = [];
 //  font uploaded
@@ -65,8 +65,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   angleMode(DEGREES);
+  imgBtn = createImg('letter.jpg', 'start button');
+  imgBtn.position(width/2 - 50, height/2 - 25);
+  imgBtn.size(100, 50);
 
+  // 2. When clicked, run the function to hide the button and switch states
+  imgBtn.mousePressed(startGame);
 }
+
+
 
 function draw() {
   background(220);
@@ -79,11 +86,37 @@ function draw() {
   }
   print(letters.length);
 
-// extracts the letters as the mouse is dragged
+  // extracts the letters as the mouse is dragged
+
+
+  if (state === 'front') {
+    background(240);
+    textAlign(CENTER);
+    text("ARCADE", width/2, height/2 - 50);
+  } 
+  
+  else if (state === 'running') {
+    runMainApp(); // This calls actual JS logic
+  }
+}
+
+function startGame() {
+  state = "running"; // Switch state
+  imgBtn.hide();     // Make the button disappear
+}
+
+function runMainApp() {
+  fill(0);
+ 
 }
 function mouseDragged(){
-  letters.push(new Letter(mouseX,mouseY));
-  
+  if(state === "running"){
+    letters.push(new Letter(mouseX,mouseY));
+  }
 
 }
+
+
+
+
 
