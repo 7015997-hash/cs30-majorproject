@@ -2,7 +2,7 @@
 It would be like Letter Arcade thing where everything is about letter.Letter fidget, Ascii camera and letter animation.
  Needs to have
 
-- One letter fidget with mouse.
+- One letter fidget with mouse.>
 - One Ascii image creation with a webcam.
 - A front page for the players to select.
 - Background music for the letter fidget.

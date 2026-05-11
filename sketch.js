@@ -69,7 +69,7 @@ function setup() {
   imgBtn.position(width/2 - 50, height/2 - 25);
   imgBtn.size(100, 50);
 
-  // 2. When clicked, run the function to hide the button and switch states
+  // When clicked, run the function to hide the button and switch states
   imgBtn.mousePressed(startGame);
 }
 
