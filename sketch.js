@@ -55,6 +55,7 @@ class Letter{
 
 let state = 'front';
 let imgBtn;
+let imgBtn2;
 let font;
 let letters = [];
 //  font uploaded
@@ -98,13 +99,24 @@ function draw() {
   else if (state === 'running') {
     runMainApp(); // This calls actual JS logic
   }
+  else if (state === 'options') {
+    background(100, 200, 255);
+    text("OPTIONS MENU", width / 2, height / 2);
+  }
 }
+
+
 
 function startGame() {
   state = "running"; // Switch state
-  imgBtn.hide();     // Make the button disappear
+  imgBtn.hide(); 
+  imgBtn2.hide();    // Make the button disappear
 }
-
+function startOptions() {
+  state = "options";
+  imgBtn.hide();
+  imgBtn2.hide();
+}
 function runMainApp() {
   fill(0);
  
@@ -117,6 +129,23 @@ function mouseDragged(){
 }
 
 
+
+
+
+
+// Ascii Cam codes
+let video;
+// function setup(){
+
+  createCanvas(640,480);
+  video = createCapture(VIDEO);
+  video.size(640,480);
+  video.hide();
+// }
+// function draw(){
+  image(video,0,0);
+  
+// }
 
 
 
