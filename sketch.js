@@ -70,8 +70,23 @@ function setup() {
   imgBtn.position(width/2 - 50, height/2 - 25);
   imgBtn.size(100, 50);
 
+// For ascii cam....
+  // createCanvas(640,480);
+  video = createCapture(VIDEO);
+  video.size(640,480);
+  video.hide();
+
   // When clicked, run the function to hide the button and switch states
   imgBtn.mousePressed(startGame);
+
+
+
+  //  Button 2
+  imgBtn2 = createImg("asci img.jpg");
+  imgBtn2.position(width/2 + 100, height/2 - 20);
+  imgBtn2.size(100,100);
+  imgBtn2.mousePressed(startOptions);
+  imgBtn2.show();
 }
 
 
@@ -101,8 +116,12 @@ function draw() {
   }
   else if (state === 'options') {
     background(100, 200, 255);
-    text("OPTIONS MENU", width / 2, height / 2);
+    text("ASCII", 100, 100);
   }
+
+// Ascii cam
+  // image(video,0,0);
+  
 }
 
 
@@ -135,17 +154,9 @@ function mouseDragged(){
 
 // Ascii Cam codes
 let video;
-// function setup(){
 
-  createCanvas(640,480);
-  video = createCapture(VIDEO);
-  video.size(640,480);
-  video.hide();
-// }
-// function draw(){
-  image(video,0,0);
   
-// }
+
 
 
 
