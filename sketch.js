@@ -70,7 +70,7 @@ function setup() {
   imgBtn.position(width/2 - 50, height/2 - 25);
   imgBtn.size(100, 50);
 
-// For ascii cam....
+  // For ascii cam....
   // createCanvas(640,480);
   video = createCapture(VIDEO);
   video.size(640,480);
@@ -105,22 +105,24 @@ function draw() {
   // extracts the letters as the mouse is dragged
 
 
-  if (state === 'front') {
+  if (state === "front") {
     background(240);
     textAlign(CENTER);
     text("ARCADE", width/2, height/2 - 50);
+    text("ASCII CAM", width/2+150,height/2-50);
   } 
   
-  else if (state === 'running') {
-    runMainApp(); // This calls actual JS logic
+  else if (state === "running") {
+    runMainApp(); // This calls actual JS 
   }
-  else if (state === 'options') {
+  else if (state === "cam") {
     background(100, 200, 255);
     text("ASCII", 100, 100);
+    image(video,0,0);
   }
 
-// Ascii cam
-  // image(video,0,0);
+  // Ascii cam
+ 
   
 }
 
@@ -132,7 +134,7 @@ function startGame() {
   imgBtn2.hide();    // Make the button disappear
 }
 function startOptions() {
-  state = "options";
+  state = "cam";
   imgBtn.hide();
   imgBtn2.hide();
 }
