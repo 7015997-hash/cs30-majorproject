@@ -74,7 +74,11 @@ function setup() {
   // createCanvas(640,480);
   video = createCapture(VIDEO);
   video.size(640,480);
+  video.resize(20,0);
+  size = width/video.width;
+  print(size);
   video.hide();
+
 
   // When clicked, run the function to hide the button and switch states
   imgBtn.mousePressed(startGame);
@@ -122,7 +126,22 @@ function draw() {
   }
 
   // Ascii cam
- 
+for(let i = 0; i <video.width; i++){
+  for(let j = 0 ; j<video.height; j++){
+    let pixelV = video.get(i,j);
+    let l = brightness(pixelV);
+    let mIndex = floor(map(l,0,100,0, aschar.length)); 
+
+    let x = i*size + size/2;
+    let y = j*size + size/2;
+    let m = aschar(mIndex);
+    textSize(size);
+    textAlign(CENTER);
+    text(m,x,y);
+  }
+}
+
+
   
 }
 
@@ -156,7 +175,8 @@ function mouseDragged(){
 
 // Ascii Cam codes
 let video;
-
+let size;
+let aschar = " !  # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~ " ;
   
 
 
