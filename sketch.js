@@ -61,6 +61,8 @@ let letters = [];
 //  font uploaded
 function preload(){
   font = loadFont("Borscha-italic.ttf");
+  cartoon = loadImage("cartoon.png");
+
 }
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -72,12 +74,9 @@ function setup() {
 
   // For ascii cam....
   // createCanvas(640,480);
-  video = createCapture(VIDEO);
-  video.size(640,480);
-  video.resize(20,0);
-  size = width/video.width;
-  print(size);
-  video.hide();
+  cartoon.resize(80,0);
+  size = width/cartoon.width;
+  
 
 
   // When clicked, run the function to hide the button and switch states
@@ -119,31 +118,34 @@ function draw() {
   else if (state === "running") {
     runMainApp(); // This calls actual JS 
   }
+    // Ascii cam
   else if (state === "cam") {
     background(100, 200, 255);
-    text("ASCII", 100, 100);
-    image(video,0,0);
+    text( 100, 100);
+    image(cartoon,0,0);
+    for(let i = 0; i< cartoon.width; i++){
+    for (let j= 0; j<cartoon.height;j++){
+      let pixelV = cartoon.get(i,j);
+      let l = brightness(pixelV);
+      let mIndex = floor(map(l,0,100,0,aschar.length));
+      let x = i*size + size/2;
+      let y = j*size+ size/2;
+      let m = aschar.charAt(mIndex);
+      textSize(size);
+      textAlign(CENTER,CENTER);
+      text(m,x,y);
+    }
   }
 
-  // Ascii cam
-for(let i = 0; i <video.width; i++){
-  for(let j = 0 ; j<video.height; j++){
-    let pixelV = video.get(i,j);
-    let l = brightness(pixelV);
-    let mIndex = floor(map(l,0,100,0, aschar.length)); 
-
-    let x = i*size + size/2;
-    let y = j*size + size/2;
-    let m = aschar(mIndex);
-    textSize(size);
-    textAlign(CENTER);
-    text(m,x,y);
   }
-}
 
 
   
 }
+
+
+  
+
 
 
 
@@ -174,7 +176,7 @@ function mouseDragged(){
 
 
 // Ascii Cam codes
-let video;
+let cartoon;
 let size;
 let aschar = " !  # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~ " ;
   
