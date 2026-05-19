@@ -111,31 +111,32 @@ function draw() {
   if (state === "front") {
     background(240);
     textAlign(CENTER);
-    text("ARCADE", width/2, height/2 - 50);
+    text("LETTER FIDGET", width/2, height/2 - 50);
     text("ASCII CAM", width/2+150,height/2-50);
+    // text("Choose one of the button first one will take you to the letter fidget,")
   } 
   
   else if (state === "running") {
     runMainApp(); // This calls actual JS 
   }
-    // Ascii cam
+  // Ascii cam
   else if (state === "cam") {
     background(100, 200, 255);
     text( 100, 100);
     image(cartoon,0,0);
     for(let i = 0; i< cartoon.width; i++){
-    for (let j= 0; j<cartoon.height;j++){
-      let pixelV = cartoon.get(i,j);
-      let l = brightness(pixelV);
-      let mIndex = floor(map(l,0,100,0,aschar.length));
-      let x = i*size + size/2;
-      let y = j*size+ size/2;
-      let m = aschar.charAt(mIndex);
-      textSize(size);
-      textAlign(CENTER,CENTER);
-      text(m,x,y);
+      for (let j= 0; j<cartoon.height;j++){
+        let pixelV = cartoon.get(i,j);
+        let l = brightness(pixelV);
+        let mIndex = floor(map(l,0,100,0,aschar.length));
+        let x = i*size + size/2;
+        let y = j*size+ size/2;
+        let m = aschar.charAt(mIndex);
+        textSize(size);
+        textAlign(CENTER,CENTER);
+        text(m,x,y);
+      }
     }
-  }
 
   }
 

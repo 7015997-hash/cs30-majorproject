@@ -4,9 +4,9 @@ It would be like Letter Arcade thing where everything is about letter.Letter fid
 
 - One letter fidget with mouse.>
 - One Ascii image creation with a webcam.
-- A front page for the players to select.
+- A front page for the players to select.>
 - Background music for the letter fidget.
-- Making the preview so it works like a button.
+- Making the preview so it works like a button.>
 
  Nice to have: 
 
