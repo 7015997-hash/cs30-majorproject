@@ -58,11 +58,13 @@ let imgBtn;
 let imgBtn2;
 let font;
 let letters = [];
+let sound;
 //  font uploaded
 function preload(){
   font = loadFont("Borscha-italic.ttf");
-  cartoon = loadImage("cartoon.png");
-
+  soundFormats("mp3");
+  sound = loadSound("sound.mp3");
+ 
 }
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -73,10 +75,11 @@ function setup() {
   imgBtn.size(100, 50);
 
   // For ascii cam....
-  // createCanvas(640,480);
-  cartoon.resize(80,0);
-  size = width/cartoon.width;
   
+  video = createCapture(VIDEO);
+  video.size(vidw,vidh);
+  w = width/video.width;
+  h = height/video.height;
 
 
   // When clicked, run the function to hide the button and switch states
@@ -122,21 +125,29 @@ function draw() {
   // Ascii cam
   else if (state === "cam") {
     background(100, 200, 255);
+    video.loadPixels();
     text( 100, 100);
-    image(cartoon,0,0);
-    for(let i = 0; i< cartoon.width; i++){
-      for (let j= 0; j<cartoon.height;j++){
-        let pixelV = cartoon.get(i,j);
-        let l = brightness(pixelV);
-        let mIndex = floor(map(l,0,100,0,aschar.length));
-        let x = i*size + size/2;
-        let y = j*size+ size/2;
+    image(video,0,0);
+    for(let i = 0; i< video.width; i++){
+      for (let j= 0; j<video.height;j++){
+        let pixelIndex = (i +j*video.width)*4;
+        let r = video.pixels[pixelIndex + 0];
+        let g = video.pixels[pixelIndex + 1];
+        let b = video.pixels[pixelIndex + 2];
+
+        let bright = (r+g+b)/3;
+        let mIndex = floor(map(bright,0,100,0,aschar.length));
+        let x = i*w + w/2;
+        let y = j*h+ h/2;
         let m = aschar.charAt(mIndex);
-        textSize(size);
+        textSize(w);
         textAlign(CENTER,CENTER);
         text(m,x,y);
-      }
-    }
+
+
+       
+     }
+     }
 
   }
 
@@ -167,8 +178,17 @@ function runMainApp() {
 function mouseDragged(){
   if(state === "running"){
     letters.push(new Letter(mouseX,mouseY));
+      if (!sound.isPlaying()){
+    sound.loop();
+  }
   }
 
+
+}
+function mouseReleased(){
+  if(sound.isPlaying()){
+    sound.stop;
+  }
 }
 
 
@@ -177,10 +197,12 @@ function mouseDragged(){
 
 
 // Ascii Cam codes
-let cartoon;
+
 let size;
 let aschar = " !  # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~ " ;
-  
+let video;
+let vidw = 64;
+let vidh = 48;
 
 
 
