@@ -71,8 +71,8 @@ function setup() {
 
   angleMode(DEGREES);
   imgBtn = createImg('letter.jpg', 'start button');
-  imgBtn.position(width/2 - 50, height/2 - 25);
-  imgBtn.size(100, 50);
+  imgBtn.position(width/2 - 230, height/2 - 80);
+  imgBtn.size(300, 300);
 
   // For ascii cam....
   
@@ -89,8 +89,8 @@ function setup() {
 
   //  Button 2
   imgBtn2 = createImg("asci img.jpg");
-  imgBtn2.position(width/2 + 100, height/2 - 20);
-  imgBtn2.size(100,100);
+  imgBtn2.position(width/2 + 100, height/2 - 80);
+  imgBtn2.size(300,300);
   imgBtn2.mousePressed(startOptions);
   imgBtn2.show();
 }
@@ -114,8 +114,8 @@ function draw() {
   if (state === "front") {
     background(240);
     textAlign(CENTER);
-    text("LETTER FIDGET", width/2, height/2 - 50);
-    text("ASCII CAM", width/2+150,height/2-50);
+    text("LETTER FIDGET", width/2-80, height/2 - 150);
+    text("ASCII CAM", width/2+190,height/2-150);
     // text("Choose one of the button first one will take you to the letter fidget,")
   } 
   
@@ -124,7 +124,7 @@ function draw() {
   }
   // Ascii cam
   else if (state === "cam") {
-    background(100, 200, 255);
+    background(100);
     video.loadPixels();
     text( 100, 100);
     image(video,0,0);
@@ -146,8 +146,8 @@ function draw() {
 
 
        
-     }
-     }
+      }
+    }
 
   }
 
@@ -178,18 +178,18 @@ function runMainApp() {
 function mouseDragged(){
   if(state === "running"){
     letters.push(new Letter(mouseX,mouseY));
-      if (!sound.isPlaying()){
-    sound.loop();
-  }
+    if (!sound.isPlaying()){
+      sound.loop();
+    }
   }
 
 
 }
-function mouseReleased(){
-  if(sound.isPlaying()){
-    sound.stop;
-  }
-}
+// function mouseReleased(){
+//   if(sound.isPlaying()){
+//     sound.stop;
+//   }
+// }
 
 
 
