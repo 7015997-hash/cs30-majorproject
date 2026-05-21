@@ -116,10 +116,11 @@ function draw() {
     textAlign(CENTER);
     text("LETTER FIDGET", width/2-80, height/2 - 150);
     text("ASCII CAM", width/2+190,height/2-150);
-    // text("Choose one of the button first one will take you to the letter fidget,")
+    text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII" ,width/2-190, height/2 - 450);
+    textStyle("BOLD");
   } 
   
-  else if (state === "running") {
+  else if (state === "fidget") {
     runMainApp(); // This calls actual JS 
   }
   // Ascii cam
@@ -162,7 +163,7 @@ function draw() {
 
 
 function startGame() {
-  state = "running"; // Switch state
+  state = "fidget"; // Switch state
   imgBtn.hide(); 
   imgBtn2.hide();    // Make the button disappear
 }
@@ -176,7 +177,7 @@ function runMainApp() {
  
 }
 function mouseDragged(){
-  if(state === "running"){
+  if(state === "fidget"){
     letters.push(new Letter(mouseX,mouseY));
     if (!sound.isPlaying()){
       sound.loop();
