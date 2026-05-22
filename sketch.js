@@ -64,6 +64,7 @@ function preload(){
   font = loadFont("Borscha-italic.ttf");
   soundFormats("mp3");
   sound = loadSound("sound.mp3");
+  cursor = loadImage("cursorbg.png");
  
 }
 function setup() {
@@ -93,12 +94,19 @@ function setup() {
   imgBtn2.size(300,300);
   imgBtn2.mousePressed(startOptions);
   imgBtn2.show();
+
+
+
+  noCursor();
+  imageMode(CENTER);
 }
 
 
 
 function draw() {
   background(220);
+
+  image(cursor,mouseX,mouseY,80,80);
   for(let i= letters.length-1; i >= 0;i--){
     letters[i].update();
     letters[i].display();
@@ -208,3 +216,11 @@ let vidh = 48;
 
 
 
+// Cursor
+
+// if (mouseIsPressed === true){
+//   cursor("theCursor",8,8);
+// }
+// else{
+//   cursor('https://avatars0.githubusercontent.com/u/1617169?s=16');
+// }
