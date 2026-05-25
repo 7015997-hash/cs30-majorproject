@@ -96,17 +96,39 @@ function setup() {
   imgBtn2.show();
 
 
-
+  // for cursor in the letter fidget
   noCursor();
   imageMode(CENTER);
+
+
+  // preview btton
+  preVideo = createVideo("preview letter fidget.mp4");
+  button = createButton("play");
+  // button.position(100,200);
+  // button.size(100,20);
+  button.mousePressed(toggleVid);
 }
 
+function toggleVid(){
+
+  if(playing === true){
+    preVideo.pause();
+    button.html("play");
+  }
+  else{
+    preVideo.loop();
+    button.html("pause");
+  }
+  playing = !playing;
+}
 
 
 function draw() {
   background(220);
 
+  //  for cursor
   image(cursor,mouseX,mouseY,80,80);
+
   for(let i= letters.length-1; i >= 0;i--){
     letters[i].update();
     letters[i].display();
@@ -116,16 +138,16 @@ function draw() {
   }
   print(letters.length);
 
-  // extracts the letters as the mouse is dragged
 
 
+
+  //  for the front page
   if (state === "front") {
     background(240);
     textAlign(CENTER);
     text("LETTER FIDGET", width/2-80, height/2 - 150);
     text("ASCII CAM", width/2+190,height/2-150);
     text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII" ,width/2-190, height/2 - 450);
-    textStyle("BOLD");
   } 
   
   else if (state === "fidget") {
@@ -169,6 +191,7 @@ function draw() {
 
 
 
+//  Changing all of the states.
 
 function startGame() {
   state = "fidget"; // Switch state
@@ -184,6 +207,8 @@ function runMainApp() {
   fill(0);
  
 }
+
+//  letters
 function mouseDragged(){
   if(state === "fidget"){
     letters.push(new Letter(mouseX,mouseY));
@@ -216,11 +241,7 @@ let vidh = 48;
 
 
 
-// Cursor
-
-// if (mouseIsPressed === true){
-//   cursor("theCursor",8,8);
-// }
-// else{
-//   cursor('https://avatars0.githubusercontent.com/u/1617169?s=16');
-// }
+// preview video button
+let playing = false;
+let preVideo;
+let button;
