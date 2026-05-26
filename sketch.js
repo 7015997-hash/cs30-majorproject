@@ -68,11 +68,11 @@ function preload(){
  
 }
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1000,800);
 
   angleMode(DEGREES);
   imgBtn = createImg('letter.jpg', 'start button');
-  imgBtn.position(width/2 - 230, height/2 - 80);
+  imgBtn.position(width/2 - 340, height/2 - 80);
   imgBtn.size(300, 300);
 
   // For ascii cam....
@@ -90,7 +90,7 @@ function setup() {
 
   //  Button 2
   imgBtn2 = createImg("asci img.jpg");
-  imgBtn2.position(width/2 + 100, height/2 - 80);
+  imgBtn2.position(width/2 + 40, height/2 - 80);
   imgBtn2.size(300,300);
   imgBtn2.mousePressed(startOptions);
   imgBtn2.show();
@@ -103,17 +103,20 @@ function setup() {
 
   // preview btton
   preVideo = createVideo("preview letter fidget.mp4");
-  button = createButton("play");
-  // button.position(100,200);
+  preVideo.position(width/2 -730,height/2-300);
+  preVideo.size(200,200);
+  button = createButton("Press");
+  button.position(width/2 -730,300);
   // button.size(100,20);
   button.mousePressed(toggleVid);
 }
 
+// play button
 function toggleVid(){
 
   if(playing === true){
     preVideo.pause();
-    button.html("play");
+    button.html("Press");
   }
   else{
     preVideo.loop();
@@ -139,15 +142,13 @@ function draw() {
   print(letters.length);
 
 
-
-
   //  for the front page
   if (state === "front") {
     background(240);
     textAlign(CENTER);
-    text("LETTER FIDGET", width/2-80, height/2 - 150);
+    text("LETTER FIDGET", width/2-130, height/2 - 150);
     text("ASCII CAM", width/2+190,height/2-150);
-    text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII" ,width/2-190, height/2 - 450);
+    text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII" ,width/2-190, height/2 - 300);
   } 
   
   else if (state === "fidget") {
@@ -181,15 +182,8 @@ function draw() {
     }
 
   }
-
-
   
 }
-
-
-  
-
-
 
 //  Changing all of the states.
 
@@ -219,16 +213,6 @@ function mouseDragged(){
 
 
 }
-// function mouseReleased(){
-//   if(sound.isPlaying()){
-//     sound.stop;
-//   }
-// }
-
-
-
-
-
 
 // Ascii Cam codes
 
