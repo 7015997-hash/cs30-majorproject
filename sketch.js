@@ -109,6 +109,20 @@ function setup() {
   button.position(width/2 -730,300);
   // button.size(100,20);
   button.mousePressed(toggleVid);
+
+
+
+
+
+  // preVideo2 
+  preVideo2 = createVideo("preview letter fidget.mp4");
+  preVideo2.position(width/2 -730,height/2-50);
+  preVideo2.size(200,200);
+  button2 = createButton("go");
+  button2.position(width/2 -730,550);
+  // button.size(100,20);
+  button2.mousePressed(toggleVid);
+
 }
 
 // play button
@@ -125,6 +139,24 @@ function toggleVid(){
   playing = !playing;
 }
 
+
+// preview button 2
+
+
+
+// play button
+function toggleVid2(){
+
+  if(working === true){
+    preVideo2.pause();
+    button2.html("go");
+  }
+  else{
+    preVideo2.loop();
+    button2.html("pause");
+  }
+  working = !working;
+}
 
 function draw() {
   background(220);
@@ -229,3 +261,9 @@ let vidh = 48;
 let playing = false;
 let preVideo;
 let button;
+
+
+let working = false;
+let preVideo2;
+let button2;
+
