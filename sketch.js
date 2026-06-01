@@ -67,6 +67,8 @@ function preload(){
   cursor = loadImage("cursorbg.png");
  
 }
+
+
 function setup() {
   createCanvas(1000,800);
 
@@ -95,6 +97,9 @@ function setup() {
   imgBtn2.mousePressed(startOptions);
   imgBtn2.show();
 
+  // Button 3
+
+
 
   // for cursor in the letter fidget
   noCursor();
@@ -122,6 +127,18 @@ function setup() {
   button2.position(width/2 -730,550);
   // button.size(100,20);
   button2.mousePressed(toggleVid2);
+
+
+  // // Animation game
+  // centerX = width/2;
+  // centerY = height/2;
+  // for (let i = 0; i < nodes; i++) {
+  //   nodeStartX[i] = 0;
+  //   nodeStartY[i] = 0;
+  //   nodeX[i] = 0;
+  //   nodeY[i] = 0;
+  //   angle[i] = 0;
+  // }
 
 }
 
@@ -180,7 +197,8 @@ function draw() {
     textAlign(CENTER);
     text("LETTER FIDGET", width/2-130, height/2 - 150);
     text("ASCII CAM", width/2+190,height/2-150);
-    text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII" ,width/2-190, height/2 - 300);
+    text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII." ,width/2-190, height/2 - 300);
+    text("Preview is at the side you can play that to see how it works.",width/2-190, height/2 - 350);
   } 
   
   else if (state === "fidget") {
@@ -267,3 +285,29 @@ let working = false;
 let preVideo2;
 let button2;
 
+
+
+//  Animation game
+// Declare variables for the physics calculations
+// let centerX = 0.0;
+// let centerY = 0.0;
+// let radius = 45;
+// let rotAngle = -90;
+// let accelX = 0.0;
+// let accelY = 0.0;
+// let deltaX = 0.0;
+// let deltaY = 0.0;
+// let springing = 0.0009;
+// let damping = 0.98;
+
+// // Declare variables for specifying vertex locations
+// let nodes = 5;
+// let nodeStartX = [];
+// let nodeStartY = [];
+// let nodeX = [];
+// let nodeY = [];
+// let angle = [];
+// let frequency = [];
+
+// // Declare the variable for the curve tightness
+// let organicConstant = 1.0;
