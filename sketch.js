@@ -121,7 +121,7 @@ function setup() {
   button2 = createButton("go");
   button2.position(width/2 -730,550);
   // button.size(100,20);
-  button2.mousePressed(toggleVid);
+  button2.mousePressed(toggleVid2);
 
 }
 
