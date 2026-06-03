@@ -197,8 +197,8 @@ function draw() {
     textAlign(CENTER);
     text("LETTER FIDGET", width/2-130, height/2 - 150);
     text("ASCII CAM", width/2+190,height/2-150);
-    text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII." ,width/2-190, height/2 - 300);
-    text("Preview is at the side you can play that to see how it works.",width/2-190, height/2 - 350);
+    // text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII." ,width/2-190, height/2 - 300);
+    // text("Preview is at the side you can play that to see how it works.",width/2-190, height/2 - 350);
   } 
   
   else if (state === "fidget") {

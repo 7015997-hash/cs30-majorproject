@@ -1,74 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Sketch</title>
-
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <!-- Linking to the main p5.js library, which allows your code to use all 
-       p5 functions. Using this version while developing your code allows p5 
-       to provide more Friendly Error Messages if you mess something up...-->
+<!-- Linking to the main p5.js library, which allows your code to use all
+      p5 functions. Using this version while developing your code allows p5
+      to provide more Friendly Error Messages if you mess something up...-->
+
+
     <script src="libraries/p5.js"></script>
 
-    <!-- Once your project is working completely, you can comment out the link
-       to p5.js above, and instead link to this minified version. The minified
-       version takes less space, and turns off Friendly Error Messages. This 
-       increases the speed of your program quite dramatically in some cases.-->
-    <!-- <script src="libraries/p5.min.js"></script> -->
+     <!-- Once your project is working completely, you can comment out the link
+      to p5.js above, and instead link to this minified version. The minified
+      version takes less space, and turns off Friendly Error Messages. This
+      increases the speed of your program quite dramatically in some cases.-->
+   <!-- <script src="libraries/p5.min.js"></script> -->
 
     <script src="libraries/p5.sound.min.js"></script>
-    
-  </head>
-  <body>
-  
-  <!-- <p1> ASCII ARCADE</p1> -->
-  <section class = "banner">
-    <header>
-      <a href="#" class="logo"> logo</a>
-      <div class=" toggle">
+</head>
+<body>
 
-      </div>
-    </header>
-    <div class="content">
-    </div class = "contentBox">
-    <h2>An Arcade for you</h2>
-    <h1 data-texts=" Arcade" class="title">Arcade</h1>
-    <p>Choose 1</p>
-    <div class ="imgBox">
-      <img src="./arcadebg.png" alt=""/>
-    </div>
-    </div>
-    <ul class="sci">
-      <li><a href="#"><ion-icon name="color-palette-outline"></ion-icon></a></li>
-      <li><a href="#"><ion-icon name="videocam-outline"></ion-icon></a></li>
-      <li><a href="#"><ion-icon name="logo-octocat"></ion-icon></a></li>
-    </ul>
-    <ul class="menu"></ul>
-    <li><a href="#"><ion-icon name="home-outline"></ion-icon></a></li>
-    <li><a href="#">Letter Fidget</a></li>
-    <li><a href="#">Ascii cam</a></li>
-    <li><a href="#">Petcat</a></li>
-  
+    <section class="banner">
+        <header>
+            <a href="#" class="logo">logo</a>
+            <div class="toggle"></div>
+        </header>
 
-  </section>
-  <script
-  type="module"
-  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js">
-</script>
-<script nomodule 
-src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>"
+        
+        <div class="content">
+            <div class="contentBox"> 
+                <h2>An Arcade for you</h2>
+                <h1 data-texts="Arcade" class="title">Arcade</h1>
+                <p>Choose 1</p>
+                <div class="imgBox">
+                    <img src="./arcadebg.png" alt=""/>
+                </div>
+            </div> 
+        </div>
 
-  
+        <!-- Social Media Navigation Icons -->
+        <ul class="sci">
+            <li><a href="#"><ion-icon name="color-palette-outline"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="videocam-outline"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-octocat"></ion-icon></a></li>
+        </ul>
 
+        <!-- Main Arcade Navigation Menu -->
+        <ul class="menu">
+            <li><a href="#"><ion-icon name="home-outline"></ion-icon></a></li>
+            <li><a href="#">Letter Fidget</a></li>
+            <li><a href="#">Ascii cam</a></li>
+            <li><a href="#">Petcat</a></li>
+        </ul>
+    </section>
 
-  <body>
+    <!-- Ionicons Pack Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
     <script src="sketch.js"></script>
     <script src="asciisketch.js"></script>
-    
-
-  </body>
-   </body>
+</body>
 </html>

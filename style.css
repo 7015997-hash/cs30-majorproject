@@ -20,6 +20,7 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  background: rgba(81, 82, 82, 1);
 }
 .banner::before{
   position: absolute;
@@ -58,4 +59,158 @@ body {
   filter: blur(30px);
   z-index: 1;
   transition: 1s;
+}
+.banner.active::after{
+  width: 100%;
+  height: 100%;
+  background: rgba(65, 84, 91, 1);
+}
+header{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  z-index:100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 100px;
+}
+
+header .logo{
+  font-size: 2em;
+  font-weight: 700;
+  color:white;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  transform-origin: right;
+}
+
+.banner.active .logo{
+  transform: scale(0);
+  transform-origin: left;
+}
+
+header .toggle{
+  position:relative;
+  background: url('dots-removebg-preview.png');
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px;
+  cursor:pointer;
+}
+.banner.active header .toggle{
+  position:relative;
+  background: url('closeb-bg.png');
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+  cursor:pointer;
+}
+
+.content{
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.banner.active .content .imgBox img{
+  opacity:0.2;
+}
+.content .contentBox{
+  width:700px;
+  transform-origin: right;
+  transition: 0.5s;
+}
+.content .contentBox h2{
+  font-size: 2em;
+  font-weight: 300;
+  color: white;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+.content .contentBox .title{
+  position: relative;
+  font-size: 7em;
+  letter-spacing: 1px;
+  color: beige;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+.content .contentBox p{
+  font-size: 1em;
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: beige;
+  padding: 20px 0;
+}
+
+.content .contentBox a{
+  position: relative;
+  display: inline-block;
+  border: 1px solid purple;
+  text-decoration: none;
+  text-transform: uppercase ;
+  letter-spacing: 1px;
+  color: white;
+  padding: 15px 40px;
+  transition: 0.5s;
+  overflow: hidden;
+  background: black;
+
+}
+
+.content .imgBox img{
+  transform: scale(1.3);
+  opacity: 0.6;
+  max-width: 100%;
+  min-width: 400px;
+  filter: blur(1px);
+  border-radius: 50%;
+}
+
+.sci{
+  position: absolute;
+  left:100px;
+  bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.5s;
+  transform-origin: right;
+  z-index: 2;
+  gap: 20px;
+}
+
+.sci li{
+  list-style: none;
+}
+.banner.banner .sci{
+  transform: scale(0);
+  transform-origin: left;
+}
+
+.sci li a{
+  display: inline-block;
+}
+
+.sci li a ion-icon{
+  font-size: 2em;
+  color:white;
+  transition: 0.5s;
+}
+
+.sci li a ion-icon:hover{
+  color: bisque;
 }
