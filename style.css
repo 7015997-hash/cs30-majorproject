@@ -77,7 +77,7 @@ header{
   padding: 30px 100px;
 }
 
-header .logo{
+header .Ascii{
   font-size: 2em;
   font-weight: 700;
   color:white;
@@ -87,7 +87,7 @@ header .logo{
   transform-origin: right;
 }
 
-.banner.active .logo{
+.banner.active .Ascii{
   transform: scale(0);
   transform-origin: left;
 }
