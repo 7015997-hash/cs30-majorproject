@@ -26,7 +26,7 @@
     <section class="banner">
         <header>
             <a href="#" class="Ascii">Ascii</a>
-            <div class="toggle"></div>
+            <div class="toggle" onClick="toggle();"></div>
         </header>
 
         
@@ -41,7 +41,7 @@
             </div> 
         </div>
 
-        <!-- Social Media Navigation Icons -->
+        <!-- Navigation Icons -->
         <ul class="sci">
             <li><a href="#"><ion-icon name="color-palette-outline"></ion-icon></a></li>
             <li><a href="#"><ion-icon name="videocam-outline"></ion-icon></a></li>
@@ -50,10 +50,10 @@
 
         <!-- Main Arcade Navigation Menu -->
         <ul class="menu">
-            <li><a href="#"><ion-icon name="home-outline"></ion-icon></a></li>
-            <li><a href="#">Letter Fidget</a></li>
-            <li><a href="#">Ascii cam</a></li>
-            <li><a href="#">Petcat</a></li>
+            <li><a href="#" onClick="changeState('front');toggle();"><ion-icon name="home-outline"></ion-icon></a></li>
+            <li><a href="#" onClick="startGame();toggle();">Letter Fidget</a></li>
+            <li><a href="#" onClick="startOptions();toggle();">Ascii cam</a></li>
+            <li><a href="#" onClick="changeState('front');toggle();">Petcat</a></li>
         </ul>
     </section>
 

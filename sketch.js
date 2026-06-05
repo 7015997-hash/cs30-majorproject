@@ -59,6 +59,28 @@ let imgBtn2;
 let font;
 let letters = [];
 let sound;
+
+// Ascii Cam codes
+
+let size;
+let aschar = " !  # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~ " ;
+let video;
+let vidw = 64;
+let vidh = 48;
+let w, h;
+
+// preview video button
+let playing = false;
+let preVideo;
+let button;
+
+
+let working = false;
+let preVideo2;
+let button2;
+
+
+
 //  font uploaded
 function preload(){
   font = loadFont("Borscha-italic.ttf");
@@ -87,6 +109,7 @@ function setup() {
 
   // When clicked, run the function to hide the button and switch states
   imgBtn.mousePressed(startGame);
+  imgBtn.hide();
 
 
 
@@ -95,7 +118,7 @@ function setup() {
   imgBtn2.position(width/2 + 40, height/2 - 80);
   imgBtn2.size(300,300);
   imgBtn2.mousePressed(startOptions);
-  imgBtn2.show();
+  imgBtn2.hide();
 
   // Button 3
 
@@ -128,26 +151,6 @@ function setup() {
   // button.size(100,20);
   button2.mousePressed(toggleVid2);
 
-
-  // // Animation game
-
-
-  // centerX = width/2;
-  // centerY = height/2;
-  // for (let i = 0; i < nodes; i++) {
-  //   nodeStartX[i] = 0;
-  //   nodeStartY[i] = 0;
-  //   nodeX[i] = 0;
-  //   nodeY[i] = 0;
-  //   angle[i] = 0;
-  // }
-//   for (let i = 0; i < nodes; i++) {
-//     frequency[i] = random(5, 12);
-//   }
-
-//   noStroke();
-//   angleMode(DEGREES);
-// }
 
 }
 
@@ -251,69 +254,26 @@ function draw() {
 }
 
 
-function drawShape() {
-  // Calculate node starting locations
-  for (let i = 0; i < nodes; i++) {
-    nodeStartX[i] = centerX + cos(rotAngle) * radius;
-    nodeStartY[i] = centerY + sin(rotAngle) * radius;
-    rotAngle += 360.0 / nodes;
-  }
 
-  // Draw the polygon
 
-  curveTightness(organicConstant);
-  let shapeColor = lerpColor(color('red'), color('yellow'), organicConstant);
-  fill(shapeColor);
 
-  beginShape();
-  for (let i = 0; i < nodes; i++) {
-    curveVertex(nodeX[i], nodeY[i]);
-  }
-  endShape(CLOSE);
-}
-
-// function moveShape() {
-//   // Move center point
-//   deltaX = mouseX - centerX;
-//   deltaY = mouseY - centerY;
-
-//   // Create springing effect
-//   deltaX *= springing;
-//   deltaY *= springing;
-//   accelX += deltaX;
-//   accelY += deltaY;
-
-//   // Move center
-//   centerX += accelX;
-//   centerY += accelY;
-
-//   // Slow down springing
-//   accelX *= damping;
-//   accelY *= damping;
-
-//   // Change curve tightness based on the overall acceleration;
-//   // use abs() to avoid dependence on direction of acceleration
-//   organicConstant = 1 - (abs(accelX) + abs(accelY)) * 0.1;
-
-//   // Move nodes
-//   for (let i = 0; i < nodes; i++) {
-//     nodeX[i] = nodeStartX[i] + sin(angle[i]) * (accelX * 2);
-//     nodeY[i] = nodeStartY[i] + sin(angle[i]) * (accelY * 2);
-//     angle[i] += frequency[i];
-//   }
-// }
-
-//  Changing all of the states.
 
 function startGame() {
   state = "fidget"; // Switch state
   imgBtn.hide(); 
   imgBtn2.hide();    // Make the button disappear
+  const banner = document.querySelector(".banner");
+  banner.classList.remove("cam-active");
+  banner.classList.add("fidget-active");
 }
 function startOptions() {
   state = "cam";
   imgBtn.hide();
   imgBtn2.hide();
+  const banner = document.querySelector(".banner");
+  banner.classList.remove("fidget-active");
+  banner.classList.add("cam-active");
+
 }
 function runMainApp() {
   fill(0);
@@ -332,50 +292,21 @@ function mouseDragged(){
 
 }
 
-// Ascii Cam codes
-
-let size;
-let aschar = " !  # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~ " ;
-let video;
-let vidw = 64;
-let vidh = 48;
-
-
-
-
-// preview video button
-let playing = false;
-let preVideo;
-let button;
+function changeState(chosenState) {
+  state = chosenState;
+  
+  
+  if (chosenState === "front") {
+    const banner = document.querySelector(".banner");
+    banner.classList.remove("fidget-active", "cam-active");
+  }
+}
 
 
-let working = false;
-let preVideo2;
-let button2;
+function toggle(){
+  const toggle = document.querySelector(".toggle");
+  const banner = document.querySelector(".banner");
+  toggle.classList.toggle("active");
+  banner.classList.toggle("active");
+}
 
-
-
-//  Animation game
-// Declare variables for the physics calculations
-// let centerX = 0.0;
-// let centerY = 0.0;
-// let radius = 45;
-// let rotAngle = -90;
-// let accelX = 0.0;
-// let accelY = 0.0;
-// let deltaX = 0.0;
-// let deltaY = 0.0;
-// let springing = 0.0009;
-// let damping = 0.98;
-
-// // Declare variables for specifying vertex locations
-// let nodes = 5;
-// let nodeStartX = [];
-// let nodeStartY = [];
-// let nodeX = [];
-// let nodeY = [];
-// let angle = [];
-// let frequency = [];
-
-// // Declare the variable for the curve tightness
-// let organicConstant = 1.0;
