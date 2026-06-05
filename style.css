@@ -98,17 +98,17 @@ header .Ascii{
 
 header .toggle{
   position:relative;
-  background: url('dots-removebg-preview.png');
-  width: 30px;
-  height: 30px;
+  background: url('starsbg-preview.png');
+  width: 60px;
+  height: 60px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 30px;
+  background-size: 60px;
   cursor:pointer;
 }
 .banner.active header .toggle{
   position:relative;
-  background: url('closeb-bg.png');
+  background: url('closebg.png');
   width: 30px;
   height: 30px;
   background-repeat: no-repeat;
@@ -182,6 +182,7 @@ header .toggle{
   min-width: 400px;
   filter: blur(1px);
   border-radius: 50%;
+  transform: translate(100%, -10%);
 }
 /* Icons */
 .sci{
@@ -196,7 +197,7 @@ header .toggle{
   z-index: 2;
   gap: 20px;
 }
-/* cance default bullet point */
+/* cancels default bullet point */
 .sci li{
   list-style: none;
 }
@@ -302,4 +303,4 @@ header, .sci {
   pointer-events: none;
 }
 
-/* z overlaps lower numbers? */
+/* z overlaps lower numbers */

@@ -54,8 +54,7 @@ class Letter{
 }
 
 let state = 'front';
-let imgBtn;
-let imgBtn2;
+
 let font;
 let letters = [];
 let sound;
@@ -95,9 +94,7 @@ function setup() {
   createCanvas(1000,800);
 
   angleMode(DEGREES);
-  imgBtn = createImg('letter.jpg', 'start button');
-  imgBtn.position(width/2 - 340, height/2 - 80);
-  imgBtn.size(300, 300);
+  
 
   // For ascii cam....
   
@@ -107,21 +104,6 @@ function setup() {
   h = height/video.height;
 
 
-  // When clicked, run the function to hide the button and switch states
-  imgBtn.mousePressed(startGame);
-  imgBtn.hide();
-
-
-
-  //  Button 2
-  imgBtn2 = createImg("asci img.jpg");
-  imgBtn2.position(width/2 + 40, height/2 - 80);
-  imgBtn2.size(300,300);
-  imgBtn2.mousePressed(startOptions);
-  imgBtn2.hide();
-
-  // Button 3
-
 
 
   // for cursor in the letter fidget
@@ -130,61 +112,61 @@ function setup() {
 
 
   // preview btton
-  preVideo = createVideo("preview letter fidget.mp4");
-  preVideo.position(width/2 -730,height/2-300);
-  preVideo.size(200,200);
-  button = createButton("Press");
-  button.position(width/2 -730,300);
-  // button.size(100,20);
-  button.mousePressed(toggleVid);
+//   preVideo = createVideo("preview letter fidget.mp4");
+//   preVideo.position(width/2 -730,height/2-300);
+//   preVideo.size(200,200);
+//   button = createButton("Press");
+//   button.position(width/2 -730,300);
+//   // button.size(100,20);
+//   button.mousePressed(toggleVid);
 
 
 
 
 
-  // preVideo2 
-  preVideo2 = createVideo("preview letter fidget.mp4");
-  preVideo2.position(width/2 -730,height/2-50);
-  preVideo2.size(200,200);
-  button2 = createButton("go");
-  button2.position(width/2 -730,550);
-  // button.size(100,20);
-  button2.mousePressed(toggleVid2);
+//   // preVideo2 
+//   preVideo2 = createVideo("preview letter fidget.mp4");
+//   preVideo2.position(width/2 -730,height/2-50);
+//   preVideo2.size(200,200);
+//   button2 = createButton("go");
+//   button2.position(width/2 -730,550);
+//   // button.size(100,20);
+//   button2.mousePressed(toggleVid2);
 
 
-}
+// }
 
-// play button
-function toggleVid(){
+// // play button
+// function toggleVid(){
 
-  if(playing === true){
-    preVideo.pause();
-    button.html("Press");
-  }
-  else{
-    preVideo.loop();
-    button.html("pause");
-  }
-  playing = !playing;
-}
-
-
-// preview button 2
+//   if(playing === true){
+//     preVideo.pause();
+//     button.html("Press");
+//   }
+//   else{
+//     preVideo.loop();
+//     button.html("pause");
+//   }
+//   playing = !playing;
+// }
 
 
+// // preview button 2
 
-// play button
-function toggleVid2(){
 
-  if(working === true){
-    preVideo2.pause();
-    button2.html("go");
-  }
-  else{
-    preVideo2.loop();
-    button2.html("pause");
-  }
-  working = !working;
+
+// // play button
+// function toggleVid2(){
+
+//   if(working === true){
+//     preVideo2.pause();
+//     button2.html("go");
+//   }
+//   else{
+//     preVideo2.loop();
+//     button2.html("pause");
+//   }
+//   working = !working;
 }
 
 function draw() {
@@ -206,15 +188,12 @@ function draw() {
   //  for the front page
   if (state === "front") {
     background(240);
-    textAlign(CENTER);
-    text("LETTER FIDGET", width/2-130, height/2 - 150);
-    text("ASCII CAM", width/2+190,height/2-150);
-    // text("Choose one of the button first one will take you to the letter fidget,Second one will show yourself in ASCII." ,width/2-190, height/2 - 300);
-    // text("Preview is at the side you can play that to see how it works.",width/2-190, height/2 - 350);
+
   } 
   
   else if (state === "fidget") {
-    runMainApp(); // This calls actual JS 
+    // This calls actual JS 
+    runMainApp(); 
   }
   // Ascii cam
   else if (state === "cam") {
@@ -245,12 +224,6 @@ function draw() {
 
   }
 
-  // background(0, 50);
-
-  // // Draw and move the shape
-  // drawShape();
-  // moveShape();
-  
 }
 
 
@@ -259,17 +232,14 @@ function draw() {
 
 
 function startGame() {
-  state = "fidget"; // Switch state
-  imgBtn.hide(); 
-  imgBtn2.hide();    // Make the button disappear
+  // Switch state
+  state = "fidget"; 
   const banner = document.querySelector(".banner");
   banner.classList.remove("cam-active");
   banner.classList.add("fidget-active");
 }
 function startOptions() {
   state = "cam";
-  imgBtn.hide();
-  imgBtn2.hide();
   const banner = document.querySelector(".banner");
   banner.classList.remove("fidget-active");
   banner.classList.add("cam-active");
