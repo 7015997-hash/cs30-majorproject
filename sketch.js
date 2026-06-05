@@ -192,13 +192,13 @@ function draw() {
   } 
   
   else if (state === "fidget") {
-<<<<<<< HEAD
+
     // This calls actual JS
     runMainApp();  
-=======
+
     // This calls actual JS 
     runMainApp(); 
->>>>>>> 80fb952e1d9870eb1a6ba239851bfb89289750d5
+
   }
   // Ascii cam
   else if (state === "cam") {
@@ -239,11 +239,11 @@ function draw() {
 function startGame() {
   // Switch state
   state = "fidget"; 
-<<<<<<< HEAD
-  imgBtn.hide(); 
-  imgBtn2.hide();    // Make the button disappear
-=======
->>>>>>> 80fb952e1d9870eb1a6ba239851bfb89289750d5
+
+  // imgBtn.hide(); 
+  // imgBtn2.hide();    // Make the button disappear
+
+
   const banner = document.querySelector(".banner");
   banner.classList.remove("cam-active");
   banner.classList.add("fidget-active");
