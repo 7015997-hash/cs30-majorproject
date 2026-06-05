@@ -1,5 +1,5 @@
-// Project Title
-// Mobashira
+// CAPSTONE 
+// Mobashira Naba
 // Date
 //
 // Extra for Experts:
@@ -203,7 +203,7 @@ function draw() {
   print(letters.length);
 
 
-  //  for the front page
+  // for the front page
   if (state === "front") {
     background(240);
     textAlign(CENTER);
@@ -214,7 +214,8 @@ function draw() {
   } 
   
   else if (state === "fidget") {
-    runMainApp(); // This calls actual JS 
+    // This calls actual JS
+    runMainApp();  
   }
   // Ascii cam
   else if (state === "cam") {
@@ -259,7 +260,8 @@ function draw() {
 
 
 function startGame() {
-  state = "fidget"; // Switch state
+  // Switch state
+  state = "fidget"; 
   imgBtn.hide(); 
   imgBtn2.hide();    // Make the button disappear
   const banner = document.querySelector(".banner");
@@ -280,7 +282,7 @@ function runMainApp() {
  
 }
 
-//  letters
+// letters
 function mouseDragged(){
   if(state === "fidget"){
     letters.push(new Letter(mouseX,mouseY));
