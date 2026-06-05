@@ -34,7 +34,9 @@
             <div class="contentBox"> 
                 <h2>An Arcade for you</h2>
                 <h1 data-texts="Arcade" class="title">Arcade</h1>
-                <p>Choose 1</p>
+                <p>Click on the STARS to see the Instuctions...
+                    Click on ICONS to Play...
+                </p>
                 <div class="imgBox">
                     <img src="./arcadebg.png" alt=""/>
                 </div>
@@ -43,17 +45,18 @@
 
         <!-- Navigation Icons -->
         <ul class="sci">
-            <li><a href="#"><ion-icon name="color-palette-outline"></ion-icon></a></li>
-            <li><a href="#"><ion-icon name="videocam-outline"></ion-icon></a></li>
-            <li><a href="#"><ion-icon name="logo-octocat"></ion-icon></a></li>
+            <li><a href="#" onClick="changeState('front');toggle();"><ion-icon name="home-outline"></ion-icon></a></li>
+            <li><a href="#" onClick="startGame();toggle();"><ion-icon name="color-palette-outline"></ion-icon></a></li>
+            <li><a href="#" onClick="startOptions();toggle();"><ion-icon name="videocam-outline"></ion-icon></a></li>
+            <li><a href="#" onClick="changeState('front');toggle();"><ion-icon name="logo-octocat"></ion-icon></a></li>
         </ul>
 
         <!-- Main Arcade Navigation Menu -->
         <ul class="menu">
             <li><a href="#" onClick="changeState('front');toggle();"><ion-icon name="home-outline"></ion-icon></a></li>
-            <li><a href="#" onClick="startGame();toggle();">Letter Fidget</a></li>
-            <li><a href="#" onClick="startOptions();toggle();">Ascii cam</a></li>
-            <li><a href="#" onClick="changeState('front');toggle();">Petcat</a></li>
+            <!-- <li><a href="#" >Letter Fidget</a></li>
+            <li><a href="#" >Ascii cam</a></li>
+            <li><a href="#" >Petcat</a></li> -->
         </ul>
     </section>
 
