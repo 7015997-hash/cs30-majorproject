@@ -64,8 +64,11 @@ let sound;
 let size;
 let aschar = " !  # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~ " ;
 let video;
-let vidw = 64;
-let vidh = 48;
+const vw =64;
+const vh = 48;
+// Magic number
+let vidw = vw;
+let vidh = vh;
 let w, h;
 
 // preview video button
@@ -228,6 +231,7 @@ function draw() {
 
   }
 
+
 }
 
 
@@ -238,9 +242,6 @@ function draw() {
 function startGame() {
   // Switch state
   state = "fidget"; 
-
-  // imgBtn.hide(); 
-  // imgBtn2.hide();    // Make the button disappear
 
 
   const banner = document.querySelector(".banner");

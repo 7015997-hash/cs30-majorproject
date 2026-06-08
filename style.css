@@ -128,7 +128,7 @@ header .toggle{
 }
 
 .banner.active .content .imgBox img{
-  opacity:0.2;
+  opacity:1;
 }
 .content .contentBox{
   width:700px;
