@@ -92,7 +92,6 @@ function preload(){
 
 function setup() {
   createCanvas(1000,800);
-
   angleMode(DEGREES);
   
 
