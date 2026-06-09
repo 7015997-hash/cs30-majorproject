@@ -44,7 +44,7 @@ body {
   );
   filter: blur(30px);
   z-index: 1;
-  transition:1;
+  transition:1s;
 
 }
 .banner.active::before{
@@ -284,6 +284,7 @@ canvas {
 
 /* turning on games */
 body:has(.fidget-active) canvas,
+body:has(.pet-active) canvas,
 body:has(.cam-active) canvas {
   /* prioritize */
   display: block !important; 
@@ -297,6 +298,7 @@ header, .sci {
 
 /* hide front page */
 .banner.fidget-active .content,
+.banner.pet-active .content,
 .banner.cam-active .content {
   opacity: 0;
   visibility: hidden;

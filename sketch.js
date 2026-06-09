@@ -78,17 +78,57 @@ let button;
 
 
 let working = false;
-let preVideo2;
+// let preVideo2;
 let button2;
 
 
+// Pet cat animation:
+// Declare variables for the physics calculations
+let centerX = 0.0;
+let centerY = 0.0;
+let radius = 45;
+let rotAngle = -90;
+let accelX = 0.0;
+let accelY = 0.0;
+let deltaX = 0.0;
+let deltaY = 0.0;
+let springing = 0.0009;
+let damping = 0.98;
 
-//  font uploaded
+// Declare variables for specifying vertex locations
+let nodes = 1;
+let nodeStartX = [];
+let nodeStartY = [];
+let nodeX = [];
+let nodeY = [];
+let angle = [];
+let frequency = [];
+
+// Declare the variable for the curve tightness
+let organicConstant = 1.0;
+
+let pet; 
+// Base size of the hamster
+let hamsterSize = 100;
+// The smallest size the hamster can shrink to    
+let minSize = 100;        
+let shrinkSpeed = 0.15;   
+// Amount the hamster shrinks per frame
+let foodX, foodY;        
+let foodSize = 25;       
+
+
+
+
+
+
+//  all  uploads
 function preload(){
   font = loadFont("Borscha-italic.ttf");
   soundFormats("mp3");
   sound = loadSound("sound.mp3");
   cursor = loadImage("cursorbg.png");
+  pet= loadImage("hamster.png");
  
 }
 
@@ -113,79 +153,44 @@ function setup() {
   imageMode(CENTER);
 
 
-  // preview btton
-//   preVideo = createVideo("preview letter fidget.mp4");
-//   preVideo.position(width/2 -730,height/2-300);
-//   preVideo.size(200,200);
-//   button = createButton("Press");
-//   button.position(width/2 -730,300);
-//   // button.size(100,20);
-//   button.mousePressed(toggleVid);
+  
 
 
+// pet hamster logic
 
+spawnFood();
+  // Start in the center of the canvas
+  centerX = width / 2;
+  centerY = height / 2;
 
+  // Initialize arrays to 0
+  for (let i = 0; i < nodes; i++) {
+    nodeStartX[i] = 0;
+    nodeStartY[i] = 0;
+    nodeX[i] = 0;
+    nodeY[i] = 0;
+    angle[i] = 0;
+  }
 
-//   // preVideo2 
-//   preVideo2 = createVideo("preview letter fidget.mp4");
-//   preVideo2.position(width/2 -730,height/2-50);
-//   preVideo2.size(200,200);
-//   button2 = createButton("go");
-//   button2.position(width/2 -730,550);
-//   // button.size(100,20);
-//   button2.mousePressed(toggleVid2);
+  // Initialize frequencies for corner nodes
+  for (let i = 0; i < nodes; i++) {
+    frequency[i] = random(5, 12);
+  }
 
-
-// }
-
-// // play button
-// function toggleVid(){
-
-//   if(playing === true){
-//     preVideo.pause();
-//     button.html("Press");
-//   }
-//   else{
-//     preVideo.loop();
-//     button.html("pause");
-//   }
-//   playing = !playing;
-// }
-
-
-// // preview button 2
-
-
-
-// // play button
-// function toggleVid2(){
-
-//   if(working === true){
-//     preVideo2.pause();
-//     button2.html("go");
-//   }
-//   else{
-//     preVideo2.loop();
-//     button2.html("pause");
-//   }
-//   working = !working;
+  noStroke();
+  angleMode(DEGREES);
 }
 
 function draw() {
-  background(220);
+  if(state !== "pet"){
+    background(220);
 
-  //  for cursor
-  image(cursor,mouseX,mouseY,80,80);
-
-  for(let i= letters.length-1; i >= 0;i--){
-    letters[i].update();
-    letters[i].display();
-    if (letters[i].offScreen() === true){
-      letters.splice(i,1);
-    }
   }
-  print(letters.length);
+  
 
+  
+
+  
 
   // for the front page
   if (state === "front") {
@@ -194,6 +199,17 @@ function draw() {
   } 
   
   else if (state === "fidget") {
+    for(let i= letters.length-1; i >= 0;i--){
+    letters[i].update();
+    letters[i].display();
+    if (letters[i].offScreen() === true){
+      letters.splice(i,1);
+    }
+  }
+  print(letters.length);
+
+    //  for cursor
+  image(cursor,mouseX,mouseY,80,80);
 
     // This calls actual JS
     runMainApp();  
@@ -230,8 +246,81 @@ function draw() {
     }
 
   }
+  else if(state === "pet"){
+    // Use alpha blending for fade effect
+    background(0, 50);
+    if (hamsterSize > minSize) {
+      hamsterSize -= shrinkSpeed;
+    }
+
+  // Draw and move the shape
+  drawShape();
+  moveShape();
+  drawFood();
+  checkEating();
+
+  }
+    
+  
 
 
+}
+function drawFood() {
+  fill(255, 204, 0); 
+  noStroke();
+  circle(foodX, foodY, foodSize);
+}
+function spawnFood() {
+  foodX = random(50, width - 50);
+  foodY = random(50, height - 50);
+}
+function drawShape() {
+  for (let i = 0; i < nodes; i++) {
+    nodeStartX[i] = centerX + cos(rotAngle) * radius;
+    nodeStartY[i] = centerY + sin(rotAngle) * radius;
+    rotAngle += 360.0 / nodes;
+  }
+
+  for (let i = 0; i < nodes; i++) {
+    let dynamicWidth = hamsterSize * 1.3; 
+    image(pet, nodeX[i], nodeY[i], dynamicWidth, hamsterSize); 
+  }
+}
+
+function moveShape() {
+  deltaX = mouseX - centerX;
+  deltaY = mouseY - centerY;
+
+  deltaX *= springing;
+  deltaY *= springing;
+  accelX += deltaX;
+  accelY += deltaY;
+
+  centerX += accelX;
+  centerY += accelY;
+
+  accelX *= damping;
+  accelY *= damping;
+
+  organicConstant = 1 - (abs(accelX) + abs(accelY)) * 0.1;
+
+  for (let i = 0; i < nodes; i++) {
+    nodeX[i] = nodeStartX[i] + sin(angle[i]) * (accelX * 2);
+    nodeY[i] = nodeStartY[i] + sin(angle[i]) * (accelY * 2);
+    angle[i] += frequency[i];
+  }
+}
+
+function checkEating() {
+  for (let i = 0; i < nodes; i++) {
+    let d = dist(nodeX[i], nodeY[i], foodX, foodY);
+    let eatingRange = (hamsterSize / 2) + (foodSize / 2);
+    
+    if (d < eatingRange) {
+      hamsterSize += 25; // Increase gain slightly to combat continuous shrinking
+      spawnFood();       
+    }
+  }
 }
 
 
@@ -247,11 +336,14 @@ function startGame() {
   const banner = document.querySelector(".banner");
   banner.classList.remove("cam-active");
   banner.classList.add("fidget-active");
+  banner.classList.remove("pet-active");
+
 }
 function startOptions() {
   state = "cam";
   const banner = document.querySelector(".banner");
   banner.classList.remove("fidget-active");
+  banner.classList.remove("pet-active");
   banner.classList.add("cam-active");
 
 }
@@ -259,18 +351,24 @@ function runMainApp() {
   fill(0);
  
 }
+function petCat(){
+  state = "pet";
+  const banner = document.querySelector(".banner");
+  banner.classList.remove("fidget-active");
+  banner.classList.add("pet-active");
+  banner.classList.remove("cam-active");
+
+}
 
 // letters
 function mouseDragged(){
   if(state === "fidget"){
     letters.push(new Letter(mouseX,mouseY));
-    if (!sound.isPlaying()){
-      sound.loop();
     }
   }
 
 
-}
+
 
 function changeState(chosenState) {
   state = chosenState;
@@ -278,7 +376,7 @@ function changeState(chosenState) {
   
   if (chosenState === "front") {
     const banner = document.querySelector(".banner");
-    banner.classList.remove("fidget-active", "cam-active");
+    banner.classList.remove("fidget-active", "cam-active", "pet-active");
   }
 }
 
