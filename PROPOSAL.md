@@ -12,5 +12,5 @@ It would be like Letter Arcade thing where everything is about letter.Letter fid
 
  - One Animation game
  - Preview of the games in the front page.
- - Have an simple animation in the front page.
+ - Have an simple animation in the front page.>
  - if three letters collide with each other they bounce off

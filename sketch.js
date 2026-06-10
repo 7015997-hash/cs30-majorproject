@@ -116,7 +116,7 @@ let shrinkSpeed = 0.15;
 // Amount the hamster shrinks per frame
 let foodX, foodY;        
 let foodSize = 25;       
-
+let pethome;
 
 
 
@@ -129,6 +129,7 @@ function preload(){
   sound = loadSound("sound.mp3");
   cursor = loadImage("cursorbg.png");
   pet= loadImage("hamster.png");
+  pethome = loadImage("house.jpg");
  
 }
 
@@ -158,7 +159,7 @@ function setup() {
 
 // pet hamster logic
 
-spawnFood();
+  spawnFood();
   // Start in the center of the canvas
   centerX = width / 2;
   centerY = height / 2;
@@ -200,16 +201,16 @@ function draw() {
   
   else if (state === "fidget") {
     for(let i= letters.length-1; i >= 0;i--){
-    letters[i].update();
-    letters[i].display();
-    if (letters[i].offScreen() === true){
-      letters.splice(i,1);
+      letters[i].update();
+      letters[i].display();
+      if (letters[i].offScreen() === true){
+        letters.splice(i,1);
+      }
     }
-  }
-  print(letters.length);
+    print(letters.length);
 
     //  for cursor
-  image(cursor,mouseX,mouseY,80,80);
+    image(cursor,mouseX,mouseY,80,80);
 
     // This calls actual JS
     runMainApp();  
@@ -254,10 +255,10 @@ function draw() {
     }
 
   // Draw and move the shape
-  drawShape();
-  moveShape();
-  drawFood();
-  checkEating();
+    drawShape();
+    moveShape();
+    drawFood();
+    checkEating();
 
   }
     
@@ -327,7 +328,7 @@ function checkEating() {
 
 
 
-
+// HTML
 function startGame() {
   // Switch state
   state = "fidget"; 
@@ -364,12 +365,14 @@ function petCat(){
 function mouseDragged(){
   if(state === "fidget"){
     letters.push(new Letter(mouseX,mouseY));
-    }
   }
+}
 
 
 
 
+
+// Linking HtML
 function changeState(chosenState) {
   state = chosenState;
   
