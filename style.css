@@ -13,6 +13,7 @@
 /* body style */
 body {
   overflow: hidden;
+  cursor:none;
 
 }
 /* banner layout */
@@ -300,9 +301,9 @@ header, .sci {
 .banner.fidget-active .content,
 .banner.pet-active .content,
 .banner.cam-active .content {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;;
 }
 
 /* z overlaps lower numbers */

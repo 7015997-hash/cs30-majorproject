@@ -111,13 +111,14 @@ let pet;
 // Base size of the hamster
 let hamsterSize = 100;
 // The smallest size the hamster can shrink to    
-let minSize = 100;        
+let minSize = 100;  
+let maxSize = 200;      
 let shrinkSpeed = 0.15;   
 // Amount the hamster shrinks per frame
 let foodX, foodY;        
-let foodSize = 25;       
+let foodSize = 30;       
 let pethome;
-
+let food;
 
 
 
@@ -130,6 +131,7 @@ function preload(){
   cursor = loadImage("cursorbg.png");
   pet= loadImage("hamster.png");
   pethome = loadImage("house.jpg");
+  food = loadImage("foodbg.png");
  
 }
 
@@ -200,6 +202,7 @@ function draw() {
   } 
   
   else if (state === "fidget") {
+    noCursor();
     for(let i= letters.length-1; i >= 0;i--){
       letters[i].update();
       letters[i].display();
@@ -249,9 +252,15 @@ function draw() {
   }
   else if(state === "pet"){
     // Use alpha blending for fade effect
-    background(0, 50);
+    text("Her name is Tyson" , width / 2, height / 2 - 120);
+    push();
+    tint(255);
+    imageMode(CORNER);
+   image(pethome, 0, 0, width, height);
+   pop();
     if (hamsterSize > minSize) {
       hamsterSize -= shrinkSpeed;
+      
     }
 
   // Draw and move the shape
@@ -261,15 +270,45 @@ function draw() {
     checkEating();
 
   }
+     let bannerElement = document.querySelector(".banner");
+  if (bannerElement && bannerElement.classList.contains("active")) {
+    push();
+    // Create a dark backdrop overlay so the text is super easy to read
+    fill(0, 200); 
+    rectMode(CORNER);
+    rect(0, 0, width, height);
+
+    // Styling the instruction text
+    fill(255); // White text
+    textAlign(CENTER, CENTER);
+    textFont('Courier New'); 
+    // Title
+    textSize(36);
+    text("🕹️ ARCADE INSTRUCTIONS 🕹️", width / 2, height / 2 - 120);
     
+    // Core Game Instructions
+    textSize(20);
+    text("🎨 PALETTE ICON: Play Letter Fidget. Drag your mouse to draw strings of letters.", width / 2, height / 2 - 40);
+    text("📹 VIDEOCAM ICON: Play ASCII Cam. See yourself rendered in live matrix text.", width / 2, height / 2 + 10);
+    text("🐱 OCTOCAT ICON: Play Petcat. Keep your hamster moving to eat cakes and grow", width / 2, height / 2 + 60);
+    text(" Dont feed it too much it will try to get out of the screen", width / 2, height / 2 + 75);
+    text("🏠 HOME ICON: Return to the front landing page.", width / 2, height / 2 + 110);
+    
+    textSize(16);
+    fill(0, 255, 255); 
+    text("(Click the close icon in the top right to return to your game)", width / 2, height / 2 + 180);
+    pop();
+  }
+
+  }
   
 
 
-}
+
 function drawFood() {
   fill(255, 204, 0); 
   noStroke();
-  circle(foodX, foodY, foodSize);
+  image(food,foodX, foodY, foodSize,foodSize);
 }
 function spawnFood() {
   foodX = random(50, width - 50);
@@ -335,17 +374,23 @@ function startGame() {
 
 
   const banner = document.querySelector(".banner");
-  banner.classList.remove("cam-active");
-  banner.classList.add("fidget-active");
-  banner.classList.remove("pet-active");
+  if(banner){
+    banner.classList.remove("cam-active");
+    banner.classList.add("fidget-active");
+    banner.classList.remove("pet-active");
+  }
+ 
 
 }
 function startOptions() {
   state = "cam";
   const banner = document.querySelector(".banner");
-  banner.classList.remove("fidget-active");
-  banner.classList.remove("pet-active");
-  banner.classList.add("cam-active");
+  if(banner){
+    banner.classList.remove("fidget-active");
+    banner.classList.remove("pet-active");
+    banner.classList.add("cam-active");
+  }
+  
 
 }
 function runMainApp() {
@@ -355,10 +400,14 @@ function runMainApp() {
 function petCat(){
   state = "pet";
   const banner = document.querySelector(".banner");
-  banner.classList.remove("fidget-active");
-  banner.classList.add("pet-active");
-  banner.classList.remove("cam-active");
+  if(banner){
+    banner.classList.remove("fidget-active");
+    banner.classList.add("pet-active");
+    banner.classList.remove("cam-active");
 
+
+  }
+  
 }
 
 // letters
@@ -389,5 +438,19 @@ function toggle(){
   const banner = document.querySelector(".banner");
   toggle.classList.toggle("active");
   banner.classList.toggle("active");
+
+  const infoBox = document.getElementById("instructionBox");
+
+  if (toggleBtn && banner) {
+    toggleBtn.classList.toggle("active");
+    banner.classList.toggle("active");
+    
+    if (banner.classList.contains("active")) {
+      infoBox.style.display = "block";
+    } else {
+      infoBox.style.display = "none";
+    }
+  }
 }
+
 
