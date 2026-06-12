@@ -360,7 +360,8 @@ function checkEating() {
     let eatingRange = (hamsterSize / 2) + (foodSize / 2);
     
     if (d < eatingRange) {
-      hamsterSize += 25; // Increase gain slightly to combat continuous shrinking
+      hamsterSize += 25; 
+      // Increase gain slightly to combat continuous shrinking
       spawnFood();       
     }
   }

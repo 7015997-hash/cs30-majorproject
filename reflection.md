@@ -11,4 +11,4 @@ What was the hardest part of the project?
 -And while putting the animation the bg started glicthing which was frustrating until I figured it was a easy fix. It was just frustrating.
 
 Were there any problems you could not solve?
-Yes one was my mouse dissapears until it touches any button.And I couldn't figure how I make my info button work in the home page.It only works inside game button. The sound loops but it stops when fidget mouse is being dragged but it work well for the pet home.
+Yes one was my mouse dissapears until it touches any button.And I couldn't figure how I make my info button work in the home page.It only works inside game button. The sound loops couldnt fix that.

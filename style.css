@@ -70,6 +70,8 @@ body {
   height: 100%;
   background: rgba(65, 84, 91, 1);
 }
+
+/* header */
 header{
   position: fixed;
   top:0;
