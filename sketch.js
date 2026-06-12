@@ -78,11 +78,12 @@ let button;
 
 
 let working = false;
-// let preVideo2;
+
 let button2;
 
 
 // Pet cat animation:
+
 // Declare variables for the physics calculations
 let centerX = 0.0;
 let centerY = 0.0;
@@ -202,7 +203,7 @@ function draw() {
   } 
   
   else if (state === "fidget") {
-    noCursor();
+    // noCursor();
     for(let i= letters.length-1; i >= 0;i--){
       letters[i].update();
       letters[i].display();
@@ -291,7 +292,7 @@ function draw() {
     // Core Game Instructions
     textSize(20);
     text("🎨 PALETTE ICON: Play Letter Fidget. Drag your mouse to draw strings of letters.", width / 2, height / 2 - 40);
-    text("📹 VIDEOCAM ICON: Play ASCII Cam. See yourself rendered in live matrix text.", width / 2, height / 2 + 10);
+    text("📹 VIDEOCAM ICON: Play ASCII Cam. See yourself in ASCII text.", width / 2, height / 2 + 10);
     text("🐱 OCTOCAT ICON: Play Petcat. Keep your hamster moving to eat cakes and grow", width / 2, height / 2 + 60);
     text(" Dont feed it too much it will try to get out of the screen", width / 2, height / 2 + 75);
     text("🏠 HOME ICON: Return to the front landing page.", width / 2, height / 2 + 110);
@@ -373,7 +374,7 @@ function checkEating() {
 function startGame() {
   // Switch state
   state = "fidget"; 
-  if (sound) sound.stop();
+
  
 
 
@@ -388,7 +389,7 @@ function startGame() {
 }
 function startOptions() {
   state = "cam";
-  if (sound) sound.stop();
+
   const banner = document.querySelector(".banner");
   if(banner){
     banner.classList.remove("fidget-active");
@@ -424,12 +425,10 @@ function petCat(){
 // letters
 function mouseDragged(){
   if(state === "fidget"){
-    if (sound) sound.stop();
+
     letters.push(new Letter(mouseX,mouseY));
   }
-  if (sound && !sound.isPlaying()){
-      sound.play();
-    }
+  
 }
 
 
