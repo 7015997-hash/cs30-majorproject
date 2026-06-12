@@ -1,9 +1,9 @@
 // CAPSTONE 
 // Mobashira Naba
-// Date
+// June 12 2026
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// - Used Html and css.
 
 class Letter{
   constructor(x,y){
@@ -127,7 +127,7 @@ let food;
 function preload(){
   font = loadFont("Borscha-italic.ttf");
   soundFormats("mp3");
-  sound = loadSound("sound.mp3");
+  sound = loadSound("bg.mp3");
   cursor = loadImage("cursorbg.png");
   pet= loadImage("hamster.png");
   pethome = loadImage("house.jpg");
@@ -222,6 +222,8 @@ function draw() {
     runMainApp(); 
 
   }
+
+
   // Ascii cam
   else if (state === "cam") {
     background(100);
@@ -252,7 +254,7 @@ function draw() {
   }
   else if(state === "pet"){
     // Use alpha blending for fade effect
-    text("Her name is Tyson" , width / 2, height / 2 - 120);
+    
     push();
     tint(255);
     imageMode(CORNER);
@@ -371,6 +373,8 @@ function checkEating() {
 function startGame() {
   // Switch state
   state = "fidget"; 
+  if (sound) sound.stop();
+ 
 
 
   const banner = document.querySelector(".banner");
@@ -384,6 +388,7 @@ function startGame() {
 }
 function startOptions() {
   state = "cam";
+  if (sound) sound.stop();
   const banner = document.querySelector(".banner");
   if(banner){
     banner.classList.remove("fidget-active");
@@ -399,6 +404,12 @@ function runMainApp() {
 }
 function petCat(){
   state = "pet";
+
+  if (sound) {
+    sound.stop(); 
+    userStartAudio();
+    sound.loop();
+  }
   const banner = document.querySelector(".banner");
   if(banner){
     banner.classList.remove("fidget-active");
@@ -413,9 +424,15 @@ function petCat(){
 // letters
 function mouseDragged(){
   if(state === "fidget"){
+    if (sound) sound.stop();
     letters.push(new Letter(mouseX,mouseY));
   }
+  if (sound && !sound.isPlaying()){
+      sound.play();
+    }
 }
+
+
 
 
 
@@ -424,7 +441,9 @@ function mouseDragged(){
 // Linking HtML
 function changeState(chosenState) {
   state = chosenState;
-  
+  if (chosenState !== "pet" && sound) {
+    sound.stop();
+  }
   
   if (chosenState === "front") {
     const banner = document.querySelector(".banner");
